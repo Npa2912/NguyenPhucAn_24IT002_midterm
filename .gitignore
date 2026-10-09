@@ -1,0 +1,17 @@
+# Compiled executables
+*.exe
+*.out
+*.o
+*.obj
+
+# NetBSD build output
+myls
+
+# Editor files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.log
+*~
