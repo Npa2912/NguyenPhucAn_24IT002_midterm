@@ -111,29 +111,33 @@ Các tùy chọn có thể kết hợp với nhau, ví dụ `-la`, `-ltr`, `-Rla
 
 ## 6. Kiểm thử chương trình
 
-Chạy bộ kiểm thử tự động:
+Chương trình MYLS hiện được kiểm thử thủ công trên hệ điều hành NetBSD bằng cách thực thi các tùy chọn và đối chiếu kết quả với lệnh `ls` gốc.
+
+**Kiểm thử chức năng liệt kê chi tiết:**
 
 ```sh
-make test
-```
-
-Hoặc:
-
-```sh
-sh tests/test.sh
-```
-
-Bộ kiểm thử gồm 13 trường hợp cơ bản, kiểm tra các chức năng liệt kê, file ẩn, sắp xếp, đệ quy và xử lý lỗi.
-
-Có thể so sánh kết quả với lệnh `ls` gốc trên NetBSD:
-
-```sh
-ls -la tests
 ./myls -la tests
+ls -la tests
 ```
 
-Nếu có bài kiểm thử báo `FAIL`, cần kiểm tra và sửa lỗi trước khi nghiệm thu.
+Kết quả thực nghiệm cho thấy hai lệnh hiển thị tương đương về danh sách tệp, thư mục, quyền truy cập, chủ sở hữu, kích thước và thời gian sửa đổi trong trường hợp kiểm thử này.
 
+**Kiểm thử các chức năng khác:**
+
+```sh
+./myls
+./myls -la
+./myls -lh /etc
+./myls -R tests
+./myls -S /etc
+./myls -F
+```
+
+**Tình trạng kiểm thử tự động:**
+
+Dự án có tệp `tests/test.sh` và quy tắc `make test` trong Makefile. Tuy nhiên, tệp `tests/test.sh` hiện chưa có nội dung nên chưa triển khai bộ kiểm thử tự động.
+
+Trong các phiên bản tiếp theo, dự án sẽ bổ sung các trường hợp kiểm thử tự động nhằm đánh giá đầy đủ các tùy chọn và khả năng xử lý lỗi của chương trình.
 ## 7. Dọn dẹp và biên dịch lại
 
 Xóa các file đã biên dịch:
